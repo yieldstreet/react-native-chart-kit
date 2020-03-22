@@ -273,6 +273,8 @@ class LineChart extends AbstractChart {
       withOuterLines = true,
       withHorizontalLabels = true,
       withVerticalLabels = true,
+      withOnlyHorizontalLines = false,
+      withOnlyVerticalLines = false,
       style = {},
       decorator,
       onDataPointClick,
@@ -328,7 +330,7 @@ class LineChart extends AbstractChart {
               ...this.props.chartConfig
             })}
             <G>
-              {withInnerLines
+              {withInnerLines && !withOnlyVerticalLines
                 ? this.renderHorizontalLines({
                     ...config,
                     count: count,
@@ -357,7 +359,7 @@ class LineChart extends AbstractChart {
                 : null}
             </G>
             <G>
-              {withInnerLines
+              {withInnerLines && !withOnlyHorizontalLines
                 ? this.renderVerticalLines({
                     ...config,
                     data: data.datasets[0].data,
