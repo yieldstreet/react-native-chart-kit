@@ -11,12 +11,13 @@ class PieChart extends AbstractChart {
       style = {},
       backgroundColor,
       absolute = false,
-      hasLegend = true
+      hasLegend = true,
+      donutRadius = 0,
     } = this.props;
     const { borderRadius = 0 } = style;
     const chart = Pie({
       center: this.props.center || [0, 0],
-      r: 0,
+      r: donutRadius,
       R: this.props.height / 2.5,
       data: this.props.data,
       accessor: x => {
