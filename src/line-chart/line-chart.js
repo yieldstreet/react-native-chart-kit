@@ -324,7 +324,7 @@ class LineChart extends AbstractChart {
           />
           {this.props.data.legend &&
             this.renderLegend(config.width, legendOffset)}
-          <G x="0" y={legendOffset}>
+          <G x="-20" y={legendOffset}>
             {this.renderDefs({
               ...config,
               ...this.props.chartConfig
