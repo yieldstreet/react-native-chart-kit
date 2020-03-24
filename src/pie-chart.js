@@ -13,6 +13,11 @@ class PieChart extends AbstractChart {
       absolute = false,
       hasLegend = true,
       donutRadius = 0,
+      centerTextConfig: {
+        mainText,
+        subText,
+        renderCenterText,
+      },
     } = this.props;
     const { borderRadius = 0 } = style;
     const chart = Pie({
@@ -52,7 +57,7 @@ class PieChart extends AbstractChart {
               x={this.props.width / 2.5 - 24}
               y={
                 -(this.props.height / 2.5) +
-                ((this.props.height * 0.8) / this.props.data.length) * i +
+                ((this.props.height * 0.35) / this.props.data.length) * i +
                 12
               }
             />
@@ -64,7 +69,7 @@ class PieChart extends AbstractChart {
               x={this.props.width / 2.5}
               y={
                 -(this.props.height / 2.5) +
-                ((this.props.height * 0.8) / this.props.data.length) * i +
+                ((this.props.height * 0.35) / this.props.data.length) * i +
                 12 * 2
               }
             >
@@ -106,6 +111,7 @@ class PieChart extends AbstractChart {
             y={this.props.height / 2}
           >
             {slices}
+            {renderCenterText(mainText, subText)}
           </G>
         </Svg>
       </View>
