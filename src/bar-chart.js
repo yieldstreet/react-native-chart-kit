@@ -71,6 +71,7 @@ class BarChart extends AbstractChart {
       withVerticalLabels = true,
       verticalLabelRotation = 0,
       horizontalLabelRotation = 0,
+      chartOffsetX = 0,
       withInnerLines = true,
       showBarTops = true,
       segments = 4
@@ -99,7 +100,7 @@ class BarChart extends AbstractChart {
             ry={borderRadius}
             fill="url(#backgroundGradient)"
           />
-          <G>
+          <G x={`${chartOffsetX}`}>
             {withInnerLines
               ? this.renderHorizontalLines({
                   ...config,

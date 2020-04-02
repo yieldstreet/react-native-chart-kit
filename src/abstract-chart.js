@@ -99,6 +99,7 @@ class AbstractChart extends Component {
     const {
       count,
       data,
+      labels = [],
       height,
       paddingTop,
       paddingRight,
@@ -113,19 +114,21 @@ class AbstractChart extends Component {
     } = this.props;
 
     return [...Array(count === 1 ? 1 : count + 1).keys()].map((i, _) => {
-      let yLabel = i * count;
+      let yLabel = labels[i] || i * count;
 
-      if (count === 1) {
-        yLabel = `${yAxisLabel}${formatYLabel(
-          data[0].toFixed(decimalPlaces)
-        )}${yAxisSuffix}`;
-      } else {
-        const label = this.props.fromZero
-          ? (this.calcScaler(data) / count) * i + Math.min(...data, 0)
-          : (this.calcScaler(data) / count) * i + Math.min(...data);
-        yLabel = `${yAxisLabel}${formatYLabel(
-          label.toFixed(decimalPlaces)
-        )}${yAxisSuffix}`;
+      if (labels.length === 0) {
+        if (count === 1) {
+          yLabel = `${yAxisLabel}${formatYLabel(
+            data[0].toFixed(decimalPlaces)
+          )}${yAxisSuffix}`;
+        } else {
+          const label = this.props.fromZero
+            ? (this.calcScaler(data) / count) * i + Math.min(...data, 0)
+            : (this.calcScaler(data) / count) * i + Math.min(...data);
+          yLabel = `${yAxisLabel}${formatYLabel(
+            label.toFixed(decimalPlaces)
+          )}${yAxisSuffix}`;
+        }
       }
 
       const basePosition = height - height / 4;
